@@ -1,12 +1,14 @@
 #!/bin/bash
 
+./.cron.sh
+
 #dialog --ok-label "Siguiente" --msgbox "¡Bienvenido!" 0 0
 
 #break=0
 #while [ $break == 0 ]
 #do
 
-dialog --menu "Opciones:" 0 0 0 1 "Escaneo de dispositivos" 2 "Programación de escaneos" 2>temp
+dialog --menu "Opciones:" 0 0 0 1 "Programar nuevo escaneo" 2 "Listar escaneos programados" 3 "Borrar escaneos programados" 2>temp
 Cancelado=$?
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
