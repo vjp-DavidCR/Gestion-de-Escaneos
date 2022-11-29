@@ -31,6 +31,8 @@ if [[ $(echo $fecha | tr "/" "-") < $(date '+%d-%m-%Y') ]] || [[ $(echo $hora) <
 then
   echo "break"
   dialog --title "¡ERROR!" --backtitle "Proyecto Shell Script" --msgbox "El script no puede tener una fecha inferior a la actual." 0 0
+else
+  dialog --title "¡Éxito!" --backtitle "Proyecto Shell Script" --msgbox 'Se ha programado el script con fecha '\"$fecha\"' y hora '\"$hora\"'.' 0 0
 fi
 
 #date '+%d-%m-%Y'
@@ -41,4 +43,4 @@ fi
 ./.cron.sh
 #sleep 1
 #done
-clear
+#clear
