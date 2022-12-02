@@ -1,4 +1,5 @@
 #!/bin/bash
+#Borrar Tareas Programadas
 
 ./.cron.sh
 

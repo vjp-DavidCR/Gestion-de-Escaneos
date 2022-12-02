@@ -1,6 +1,7 @@
 #!/bin/bash
+#Listar tareas programadas
 
-./.cron.sh
+#./.cron.sh
 
 #dialog --ok-label "Siguiente" --msgbox "¡Bienvenido!" 0 0
 
@@ -8,13 +9,22 @@
 #while [ $break == 0 ]
 #do
 
-dialog --menu "Opciones:" 0 0 0 1 "Programar nuevo escaneo" 2 "Listar escaneos programados" 3 "Borrar escaneos programados" 2>temp
-Cancelado=$?
-Eleccion=`cat temp` ; rm temp
-if [ $Cancelado -eq 0 ]
-  then echo "Has elegido: $Eleccion"
-  else dialog --infobox "¡Has cancelado!" 4 24
-fi
+lista=$(
+for n in $(cat .cron.txt | grep -v "#" | tr " " "@")
+do
+echo -n "- "
+echo $n | tr "@" " "
+echo "\n"
+done
+)
+
+echo $lista
+sleep 1
+
+counter=$(( $(cat .cron.txt | grep -v "#" | wc -l) + 6 ))
+
+dialog --backtitle "Proyecto Shell Script" --title "Listar escaneos programados" --msgbox "Lista de escaneos: \n\n$lista" $counter 60
+
 #sleep 1
 #done
 #clear
