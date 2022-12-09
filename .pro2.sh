@@ -8,7 +8,7 @@
 #while [ $break == 0 ]
 #do
 
-dialog --menu "Opciones:" 0 0 0 1 "Programar nuevo escaneo" 2 "Listar escaneos programados" 3 "Borrar escaneos programados" 2>temp
+dialog --menu "Opciones:" 0 0 0 1 "Pro2" 2>temp
 Cancelado=$?
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
