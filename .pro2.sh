@@ -18,8 +18,7 @@ echo "\n"
 done
 )
 
-echo $lista
-sleep 1
+#echo $lista; sleep 1
 
 counter=$(( $(cat .cron.txt | grep -v "#" | wc -l) + 6 ))
 
