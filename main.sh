@@ -17,7 +17,7 @@ break=0
 while [ $break == 0 ]
 do
 
-dialog --backtitle "Proyecto Shell Script" --menu "Menú Principal" 0 0 0 1 "Escaneo de dispositivos" 2 "Programación de escaneos" 3 "Consultar escaneos de red" 4 "Consultar escaneos de servicios" 5 "Consultar escaneos de vulnerabilidades" 0 "Salir" 2>temp
+dialog --backtitle "Proyecto Shell Script" --menu "Menú Principal" 0 0 0 1 "Escaneo de dispositivos" 2 "Programación de escaneos" 3 "Consultar escaneos de red" 4 "Consultar escaneos de servicios" 5 "Consultar escaneos de vulnerabilidades" 9 "Salir" 2>temp
 Cancelado=$?
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
@@ -43,7 +43,7 @@ if [ $Cancelado -eq 0 ]
     then
       echo "Consultar escaneos de vulnerabilidades."
       ./.cvul.sh
-    elif [ $Eleccion == 0 ]
+    elif [ $Eleccion == 9 ]
     then
       dialog --backtitle "Proyecto Shell Script" --infobox "¡Hasta la próxima!" 4 24
       break=1

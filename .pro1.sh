@@ -11,7 +11,7 @@ dialog --backtitle "Proyecto Shell Script" --title "Programar un escaneo" --cale
 Cancelado=$?
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
-  then echo "Has elegido: $Eleccion" > /dev/null 2>&1
+  then echo "Has elegido: $Eleccion"
   else dialog --backtitle "Proyecto Shell Script" --infobox "¡Has cancelado!" 4 24
 fi
 fecha=$Eleccion
@@ -22,23 +22,68 @@ dialog --backtitle "Proyecto Shell Script" --title "Programar un escaneo" --time
 Cancelado=$?
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
-  then echo "Has elegido: $Eleccion" > /dev/null 2>&1
+  then echo "Has elegido: $Eleccion"
   else dialog --backtitle "Proyecto Shell Script" --infobox "¡Has cancelado!" 4 24
 fi
 hora=$Eleccion
 
-if [[ $(echo $fecha | tr "/" "-") < $(date '+%d-%m-%Y') ]] || [[ $(echo $hora) < $(date +"%T") ]] ;
-then
-  echo "break"
-  dialog --title "¡ERROR!" --backtitle "Proyecto Shell Script" --msgbox "El script no puede tener una fecha inferior a la actual." 0 0
-else
-  dialog --title "¡Éxito!" --backtitle "Proyecto Shell Script" --msgbox 'Se ha programado el script con fecha '\"$fecha\"' y hora '\"$hora\"'.' 0 0
+
+
+dialog --backtitle "Proyecto Shell Script" --menu "Seleccionar escaneo:" 0 0 0 1 "Escaneo de Red" 2 "Escaneo de Servicios" 3 "Escaneo de Vulnerabilidades" 9 "Salir" 2>temp
+Cancelado=$?
+Eleccion=`cat temp` ; rm temp
+if [ $Cancelado -eq 0 ]
+  then
+#echo "Has elegido: $Eleccion"
+    if [ $Eleccion == 1 ]
+    then
+      echo "Escaneo de Red."
+      dialog --backtitle "Proyecto Shell Script" --title "Programar Escaneo de Red" --inputbox "Dirección de Red en formato CDIR" 0 0 2>temp
+      Cancelado=$?
+      Eleccion=`cat temp` ; rm temp
+      if [ $Cancelado -eq 0 ]
+        then
+          ./.red.sh $Eleccion
+        else
+          dialog --infobox "¡Has cancelado!" 4 24
+        fi
+    elif [ $Eleccion == 2 ]
+    then
+      echo "Escaneo de Servicios."
+      dialog --backtitle "Proyecto Shell Script" --title "Programar Escaneo de Servicios" --inputbox "Dirección del DISPOSITIVO" 0 0 2>temp
+      Cancelado=$?
+      Eleccion=`cat temp` ; rm temp
+      if [ $Cancelado -eq 0 ]
+        then
+          ./.red.sh $Eleccion
+        else
+          dialog --infobox "¡Has cancelado!" 4 24
+        fi
+    elif [ $Eleccion == 3 ]
+    then
+      echo "Escaneo de Vulnerabilidades."
+      dialog --backtitle "Proyecto Shell Script" --title "Programar Escaneo de Vulnerabilidades" --inputbox "Dirección del DISPOSITIVO" 0 0 2>temp
+      Cancelado=$?
+      Eleccion=`cat temp` ; rm temp
+      if [ $Cancelado -eq 0 ]
+        then
+          ./.red.sh $Eleccion
+        else
+          dialog --infobox "¡Has cancelado!" 4 24
+        fi
+    elif [ $Eleccion == 9 ]
+    then
+      echo "Salir"
+      break=1
+    else
+      echo "Si ves esto es que algo ha salido mal."
+      sleep 1
+    fi
+  else dialog --infobox "¡Has cancelado!" 4 24
 fi
 
-#date '+%d-%m-%Y'
-#echo $fecha | tr "/" "-"
-#date +"%T"
-#echo $hora
+
+
 
 ./.cron.sh
 #sleep 1
