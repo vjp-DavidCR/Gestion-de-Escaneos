@@ -8,33 +8,28 @@
 #while [ $break == 0 ]
 #do
 
-lista=$(cat .cron.txt | tr " " "$" | tr "*" "^" | grep -v "#")
+lista=$(cat .cron.txt | tr " " "$" | tr "*" "." | grep -v "#")
 #echo $lista; exit
 
-touch temporal; rm temporal
-#options=$(
+options=$(
 contador=1
 for n in $(echo $lista)
 do
-echo -n " "$contador "\"" >> temporal
-echo -n $n | tr "$" " " | tr "^" "*" >> temporal
-echo -n "\" off" >> temporal
+echo -n " "$contador "\""
+echo -n $n | tr "$" " " | tr "^" "*"
+echo -n "\" off"
 contador=$(($contador + 1))
 done
-#)
-#cat temporal; sleep 20
-rm temporal
+)
+echo $options; sleep 2
 
-dialog --backtitle "Proyecto Shell Script" --buildlist "Opciones:" f1 "0 5 * * 1 cat /var/backups/home.tgz 2>/dev/void" off f2 "0 5 * * 1 cat /var/backups/home.tgz 2>/dev/void" off f3 "0 5 * * 1 cat /var/backups/home.tgz 2>/dev/void" off f4 "0 5 * * 1 cat /var/backups/home.tgz 2>/dev/void" off f5 "0 5 * * 1 cat /var/backups/home.tgz 2>/dev/void" off f6 "0 5 * * 1 cat /var/backups/home.tgz 2>/dev/void" off 0 0 0 2>temp
-sleep 10
+dialog --backtitle "Proyecto Shell Script" --buildlist "Opciones:" 0 0 0$options 2>temp
 Cancelado=$?
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
   then echo "Has elegido: $Eleccion"
   else dialog --infobox "¡Has cancelado!" 4 24
 fi
-
-
 
 #sleep 1
 #done
