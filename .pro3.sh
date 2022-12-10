@@ -8,26 +8,54 @@
 #while [ $break == 0 ]
 #do
 
-lista=$(cat .cron.txt | tr " " "$" | tr "*" "." | grep -v "#")
+#lista=$(cat .cron.txt | tr " " "-" | tr "*" "." | grep -v "#")
+lista=$(cat .cron.txt | tr " " "_" | grep -v "#")
 #echo $lista; exit
 
 options=$(
 contador=1
 for n in $(echo $lista)
 do
-echo -n " "$contador "\""
-echo -n $n | tr "$" " " | tr "^" "*"
-echo -n "\" off"
+echo -n " "$contador" "
+echo -n $n | tr "^" "*"
+echo -n " off"
 contador=$(($contador + 1))
 done
 )
-echo $options; sleep 2
+#echo $options; sleep 2
 
-dialog --backtitle "Proyecto Shell Script" --buildlist "Opciones:" 0 0 0$options 2>temp
+dialog --backtitle "Proyecto Shell Script" --title "Borrar escaneos programados" --buildlist "Lista de escaneos:" 0 0 0$options 2>temp
 Cancelado=$?
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
-  then echo "Has elegido: $Eleccion"
+  then
+    #echo "Has elegido: $Eleccion"
+
+cat .cron.txt | grep -v "#" | tr " " "_" > temporal1
+cat .cron.txt | grep "#" > temporal2
+touch temporal3
+contador=1
+for n in $(cat temporal1); do
+echo $contador" "$n >> temporal3
+contador=$(($contador + 1))
+done
+
+touch temporal4
+for n in $Eleccion;do
+cat temporal3 | grep ^$n >> temporal4
+done
+
+comm -23 temporal3 temporal4 > temporal5
+
+cat temporal2 > .cron.txt
+cat temporal5 | cut -d " " -f 2 | tr "_" " ">> .cron.txt
+
+rm temporal1
+rm temporal2
+rm temporal3
+rm temporal4
+rm temporal5
+
   else dialog --infobox "¡Has cancelado!" 4 24
 fi
 

@@ -25,3 +25,8 @@
 # 
 # m h  dom mon dow   command
 0 5 * * 1 cat /var/backups/home.tgz 2>/dev/void
+0 5 * * 1 cat /var/backups/home.tgz 2>/dev/void
+0 5 * * 1 cat /var/backups/home.tgz 2>/dev/void
+0 5 * * 1 cat /var/backups/home.tgz 2>/dev/void
+0 5 * * 1 cat /var/backups/home.tgz 2>/dev/void
+0 5 * * 1 cat /var/backups/home.tgz 2>/dev/void
