@@ -1,5 +1,5 @@
 #!/bin/bash
-
+ruta=$(pwd)
 
 #dialog --ok-label "Siguiente" --msgbox "¡Bienvenido!" 0 0
 
@@ -53,7 +53,7 @@ if [ $Cancelado -eq 0 ]
       if [ $Cancelado -eq 0 ]
         then
           crontab -l | cat > temporal
-          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * cd /home/kali/Gestion-de-Escaneos && sh .red.sh $Eleccion" >> temporal
+          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * cd $ruta && sh .red.sh $Eleccion" >> temporal
           cat temporal | crontab -
 #          ./.red.sh $Eleccion
         else
@@ -68,7 +68,7 @@ if [ $Cancelado -eq 0 ]
       if [ $Cancelado -eq 0 ]
         then
           crontab -l | cat > temporal
-          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * cd /home/kali/Gestion-de-Escaneos && sh .red.sh $Eleccion" >> temporal
+          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * cd $ruta && sh .red.sh $Eleccion" >> temporal
           cat temporal | crontab -
 #          ./.ser.sh $Eleccion
         else
@@ -83,7 +83,7 @@ if [ $Cancelado -eq 0 ]
       if [ $Cancelado -eq 0 ]
         then
           crontab -l | cat > temporal
-          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * cd /home/kali/Gestion-de-Escaneos && sh .vul.sh $Eleccion" >> temporal
+          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * cd $ruta && sh .vul.sh $Eleccion" >> temporal
           cat temporal | crontab -
 #          ./.vul.sh $Eleccion
         else
