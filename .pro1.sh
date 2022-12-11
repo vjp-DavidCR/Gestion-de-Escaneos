@@ -13,6 +13,8 @@ Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
   then echo "Has elegido: $Eleccion"
   else dialog --backtitle "Proyecto Shell Script" --infobox "¡Has cancelado!" 4 24
+  sleep 1
+  exit
 fi
 fecha=$Eleccion
 
@@ -24,10 +26,17 @@ Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
   then echo "Has elegido: $Eleccion"
   else dialog --backtitle "Proyecto Shell Script" --infobox "¡Has cancelado!" 4 24
+  sleep 1
+  exit
 fi
 hora=$Eleccion
 
-
+if [[ $fecha < $(date +"%d/%m/%Y") ]] || [[ $hora < $(date +"%T") ]]
+then
+dialog --backtitle "Proyecto Shell Script" --infobox "¡No puedes elegir una fecha anterior a la actual!" 0 0
+sleep 2
+exit
+fi
 
 dialog --backtitle "Proyecto Shell Script" --menu "Seleccionar escaneo:" 0 0 0 1 "Escaneo de Red" 2 "Escaneo de Servicios" 3 "Escaneo de Vulnerabilidades" 9 "Salir" 2>temp
 Cancelado=$?
@@ -44,7 +53,7 @@ if [ $Cancelado -eq 0 ]
       if [ $Cancelado -eq 0 ]
         then
           crontab -l | cat > temporal
-          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * root ./home/kali/Gestion-de-Escaneos/.red.sh $Eleccion 2>dev/null" >> temporal
+          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * ./home/kali/Gestion-de-Escaneos/.red.sh $Eleccion" >> temporal
           cat temporal | crontab -
 #          ./.red.sh $Eleccion
         else
@@ -59,7 +68,7 @@ if [ $Cancelado -eq 0 ]
       if [ $Cancelado -eq 0 ]
         then
           crontab -l | cat > temporal
-          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * root ./home/kali/Gestion-de-Escaneos/.ser.sh $Eleccion 2>dev/null" >> temporal
+          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * ./home/kali/Gestion-de-Escaneos/.ser.sh $Eleccion" >> temporal
           cat temporal | crontab -
 #          ./.ser.sh $Eleccion
         else
@@ -74,7 +83,7 @@ if [ $Cancelado -eq 0 ]
       if [ $Cancelado -eq 0 ]
         then
           crontab -l | cat > temporal
-          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * root ./home/kali/Gestion-de-Escaneos/.vul.sh $Eleccion 2>dev/null" >> temporal
+          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * ./home/kali/Gestion-de-Escaneos/.vul.sh $Eleccion" >> temporal
           cat temporal | crontab -
 #          ./.vul.sh $Eleccion
         else

@@ -53,9 +53,9 @@ if [ $Cancelado -eq 0 ]
         dialog --infobox "Borrado cancelado" 0 0
         sleep 1
     fi
+    rm temp3
   else dialog --infobox "¡Has cancelado!" 4 24
 fi
-rm temp3
 
 #sleep 1
 #done
