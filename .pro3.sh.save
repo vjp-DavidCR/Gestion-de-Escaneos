@@ -9,7 +9,7 @@
 #do
 
 #lista=$(cat .cron.txt | tr " " "-" | tr "*" "." | grep -v "#")
-lista=$(crontab -l | cat | tr " " "_" | grep -v "#")
+lista=$(cat .cron.txt | tr " " "_" | grep -v "#" | grep -v "PATH")
 #echo $lista; exit
 
 options=$(
@@ -30,32 +30,34 @@ Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
   then
     #echo "Has elegido: $Eleccion"
-    touch temp1
-    for n in $Eleccion
-    do
-      crontab -l | tr " " "%" | cat -n | sed -e 's/^[ \t]*//' | grep ^$n | cut -f 2 | tr "%" " " >> temp1
-    done
 
-    crontab -l | cat > temp2
+cat .cron.txt | grep -v "#" | grep -v "PATH" | tr " " "_" > temporal1
+cat .cron.txt | grep "#" | grep -v "PATH" > temporal2
+touch temporal3
+contador=1
+for n in $(cat temporal1); do
+echo $contador" "$n >> temporal3
+contador=$(($contador + 1))
+done
 
-    touch temp3
-    comm -23 temp2 temp1 > temp3
-    rm temp1
-    rm temp2
+touch temporal4
+for n in $Eleccion;do
+cat temporal3 | grep ^$n >> temporal4
+done
 
-    dialog --title "Confirmar borrado" --backtitle "Proyecto Shell Script" --yesno "Confirmar borrado de registros." 0 0 2>temp
-    Cancelado=$?
-    Eleccion=`cat temp` ; rm temp
-    if [ $Cancelado -eq 0 ]
-      then
-        cat temp3 | crontab -
-      else
-        dialog --infobox "Borrado cancelado" 0 0
-        sleep 1
-    fi
+comm -23 temporal3 temporal4 > temporal5
+
+cat temporal2 > .cron.txt
+cat temporal5 | cut -d " " -f 2 | tr "_" " ">> .cron.txt
+
+rm temporal1
+rm temporal2
+rm temporal3
+rm temporal4
+rm temporal5
+
   else dialog --infobox "¡Has cancelado!" 4 24
 fi
-rm temp3
 
 #sleep 1
 #done

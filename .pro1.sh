@@ -43,7 +43,9 @@ if [ $Cancelado -eq 0 ]
       Eleccion=`cat temp` ; rm temp
       if [ $Cancelado -eq 0 ]
         then
-          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * root ./home/kali/Gestion-de-Escaneos/.red.sh $Eleccion 2>dev/null" >> .cron.txt
+          crontab -l | cat > temporal
+          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * root ./home/kali/Gestion-de-Escaneos/.red.sh $Eleccion 2>dev/null" >> temporal
+          cat temporal | crontab -
 #          ./.red.sh $Eleccion
         else
           dialog --infobox "¡Has cancelado!" 4 24
@@ -56,7 +58,9 @@ if [ $Cancelado -eq 0 ]
       Eleccion=`cat temp` ; rm temp
       if [ $Cancelado -eq 0 ]
         then
-          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * root ./home/kali/Gestion-de-Escaneos/.ser.sh $Eleccion 2>dev/null" >> .cron.txt
+          crontab -l | cat > temporal
+          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * root ./home/kali/Gestion-de-Escaneos/.ser.sh $Eleccion 2>dev/null" >> temporal
+          cat temporal | crontab -
 #          ./.ser.sh $Eleccion
         else
           dialog --infobox "¡Has cancelado!" 4 24
@@ -69,7 +73,9 @@ if [ $Cancelado -eq 0 ]
       Eleccion=`cat temp` ; rm temp
       if [ $Cancelado -eq 0 ]
         then
-          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * root ./home/kali/Gestion-de-Escaneos/.vul.sh $Eleccion 2>dev/null" >> .cron.txt
+          crontab -l | cat > temporal
+          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * root ./home/kali/Gestion-de-Escaneos/.vul.sh $Eleccion 2>dev/null" >> temporal
+          cat temporal | crontab -
 #          ./.vul.sh $Eleccion
         else
           dialog --infobox "¡Has cancelado!" 4 24

@@ -1,4 +1,5 @@
 #!/bin/bash
+crontab -e < a
 
 dialog --backtitle "Proyecto Shell Script" --ok-label "Siguiente" --msgbox "¡Bienvenido!" 0 0
 
