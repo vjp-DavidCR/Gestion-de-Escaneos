@@ -12,13 +12,22 @@ contador=$(($contador + 1))
 done
 )
 
+if [ $# -eq 0 ]
+then
 subred=$(dialog --stdout --title "Selecconar Subred" --menu "Subredes" 0 0 0 $redes)
+else
+subred=$1
+fi
+
 dialog --infobox "Escaneando redes..." 0 0
 nmap "$subred" | grep "scan report" | grep "(" | cut -f 2 -d "(" | cut -f 1 -d ")" > ip.txt
 
 cat ip.txt > $(echo 'RED/RED-'$(date '+%d-%m-%Y-%T'));
 
 if [ -s ip.txt ] ; then
+
+if [ $# -eq 0 ]
+then
 
 ip=$(
 
@@ -54,6 +63,11 @@ respuesta=$(dialog --stdout --title "Seleccionar Escaneo" --menu "Tipos de escan
 		shell 2>/dev/null
 		exit
 	fi
+
+else
+dialog --infobox "Escaneo de Red completado." 0 0
+sleep 2
+fi
 
 else
 
