@@ -1,0 +1,9 @@
+Starting Nmap 7.92 ( https://nmap.org ) at 2022-12-11 23:21 UTC
+Nmap scan report for Repetidor_7E45.home (192.168.1.25)
+Host is up (0.037s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+23/tcp open  telnet
+80/tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 0.58 seconds
