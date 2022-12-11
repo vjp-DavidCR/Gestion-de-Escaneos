@@ -10,7 +10,7 @@
 #do
 
 lista=$(
-for n in $(crontab -l | cat | tr " " "@")
+for n in $(crontab -l | cat | grep -v "#" | tr " " "@")
 do
 echo -n "- "
 echo $n | tr "@" " "
