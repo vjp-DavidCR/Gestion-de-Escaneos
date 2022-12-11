@@ -25,3 +25,4 @@
 # 
 # m h  dom mon dow   command
 0 5 * * 1 cat /var/backups/home.tgz 2>/dev/void
+48 09 11 12 * root ./home/kali/Gestion-de-Escaneos/.red.sh addasdas 2>dev/null
