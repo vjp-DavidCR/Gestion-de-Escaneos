@@ -13,7 +13,7 @@ done
 )
 
 subred=$(dialog --stdout --title "Selecconar Subred" --menu "Subredes" 0 0 0 $redes)
-
+dialog --infobox "Escaneando redes..." 0 0
 nmap "$subred" | grep "scan report" | grep "(" | cut -f 2 -d "(" | cut -f 1 -d ")" > ip.txt
 
 cat ip.txt > $(echo 'RED/RED-'$(date '+%d-%m-%Y-%T'));
