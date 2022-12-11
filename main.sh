@@ -8,7 +8,7 @@ Cancelado=$?
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -ne 0 ]
   then
-  dialog --backtitle "Proyecto Shell Script" --ok-label "Entendido" --msgbox "El fichero \"main.sh\" necesita permisos de administrador para funcionar, prueba con \"chown -R $USER Gestion-de-Escaneos\"." 0 0
+  dialog --backtitle "Proyecto Shell Script" --ok-label "Entendido" --msgbox "El fichero \"main.sh\" necesita permisos de administrador para funcionar, prueba con \"chmod u+x -R Gestion-de-Escaneos\" y \"chown -R $USER Gestion-de-Escaneos\"." 0 0
   sleep 1
   clear
   exit
