@@ -45,8 +45,15 @@ contador=$(($contador + 1))
 done
 )
 
+break2=0
+while (( $break2 == 0 ))
+do
+
 subred=$(dialog --stdout --title "Selecconar Dispositivo" --menu "Dispositivos" 0 0 0 $ip)
 
+break1=0
+while (( $break1 == 0 ))
+do
 respuesta=$(dialog --stdout --title "Seleccionar Escaneo" --menu "Tipos de escaneo" 0 0 0 1 "Escaneo de Servicios" 2 "Escaneo de Vulnerabilidades" 9 "Salir");
 
 	if [ "$respuesta" == 1  ] ; then
@@ -63,6 +70,23 @@ respuesta=$(dialog --stdout --title "Seleccionar Escaneo" --menu "Tipos de escan
 		shell 2>/dev/null
 		exit
 	fi
+dialog --backtitle "Proyecto Shell Script" --title "Seleccionar tipos de Escaneos" --yesno "¿Desea seleccionar otro tipo de ESCANEO?" 0 0 2>temp
+Cancelado=$?
+Eleccion=`cat temp` ; rm temp
+if [ $Cancelado -ne 0 ]
+then break1=1
+fi
+done
+
+dialog --backtitle "Proyecto Shell Script" --title "Seleccionar Dispositivos" --yesno "¿Desea seleccionar otro DISPOSITIVO?" 0 0 2>temp
+Cancelado=$?
+Eleccion=`cat temp` ; rm temp
+if [ $Cancelado -ne 0 ]
+then break2=1
+fi
+done
+
+
 
 else
 dialog --infobox "Escaneo de Red completado." 0 0

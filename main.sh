@@ -1,7 +1,7 @@
 #!/bin/bash
 crontab -e < a
 
-dialog --backtitle "Proyecto Shell Script" --ok-label "Siguiente" --msgbox "¡Bienvenido!" 0 0
+dialog --backtitle "Proyecto Shell Script" --ok-label "Siguiente" --msgbox "¡Bienvenido al script de Gestión de Escaneos de Red!" 0 0
 
 sudo chmod u+x .cron.sh 2>temp
 Cancelado=$?
