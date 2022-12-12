@@ -1,4 +1,7 @@
 #!/bin/bash
+if ! [ -d "RED" ]; then
+mkdir RED
+fi
 redes=$(
 contador=1
 for n in $(ip r | grep "/" | cut -f 1 -d " ")

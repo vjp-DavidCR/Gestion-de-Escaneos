@@ -1,5 +1,9 @@
 #!/bin/bash
 #echo "Funciona"
+if ! [ -d "SER" ]; then
+mkdir SER
+fi
+
 nmap $1 > temp10
 cat temp10 > $(echo 'SER/SER-'$(date '+%d-%m-%Y-%T'))
 

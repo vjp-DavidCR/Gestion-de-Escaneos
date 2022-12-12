@@ -1,4 +1,7 @@
 #!/bin/bash
+if ! [ -d "VUL" ]; then
+mkdir VUL
+fi
 dialog --backtitle "Proyecto Shell Script" --infobox "Inicializando..." 0 0
 #git clone https://github.com/scipag/vulscan scipag_vulscan 2>/dev/null
 #sudo ln -s `pwd`/scipag_vulscan /usr/share/nmap/scripts/vulscan
