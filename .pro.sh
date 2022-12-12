@@ -10,6 +10,11 @@ do
 
 dialog --backtitle "Proyecto Shell Script" --menu "Opciones:" 0 0 0 1 "Programar nuevo escaneo" 2 "Listar escaneos programados" 3 "Borrar escaneos programados" 9 "Salir" 2>temp
 Cancelado=$?
+if [ $Cancelado -ne 0 ]
+  then
+        exit
+fi
+
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
   then
@@ -38,6 +43,7 @@ if [ $Cancelado -eq 0 ]
       sleep 1
     fi
   else dialog --infobox "¡Has cancelado!" 4 24
+  sleep 1
 fi
 
 

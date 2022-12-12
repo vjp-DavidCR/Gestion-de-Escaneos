@@ -18,6 +18,11 @@ done
 if [ $# -eq 0 ]
 then
 subred=$(dialog --stdout --title "Selecconar Subred" --menu "Subredes" 0 0 0 $redes)
+Cancelado=$?
+if [ $Cancelado -ne 0 ]
+  then
+	exit
+fi
 else
 subred=$1
 fi
@@ -53,6 +58,11 @@ while (( $break2 == 0 ))
 do
 
 subred=$(dialog --stdout --title "Selecconar Dispositivo" --menu "Dispositivos" 0 0 0 $ip)
+Cancelado=$?
+if [ $Cancelado -ne 0 ]
+  then
+        exit
+fi
 
 break1=0
 while (( $break1 == 0 ))
