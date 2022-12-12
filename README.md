@@ -11,7 +11,7 @@ Esta es una representación generalizada de las partes que les toca a cada uno.
 En realidad no nos limitamos a lo que pone en la tabla, es una orientación.
 
 | Mario | Jaime | Ismael | David |
-| :---:   | :---: | :---: | :---: |
+| :---   | :--- | :--- | :--- |
 | .vul.sh | .ser.sh | .red.sh | main.sh |
 | .cvul.sh | .cser.sh | .cred.sh | pro*.sh |
 | VUL/ | SER/ | RED/ | cron |
