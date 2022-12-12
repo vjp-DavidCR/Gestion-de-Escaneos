@@ -18,7 +18,12 @@ if [ $Cancelado -eq 0 ]
 fi
 fecha=$Eleccion
 
-#sleep 1
+if [[ $fecha < $(date +"%d/%m/%Y") ]]
+then
+dialog --backtitle "Proyecto Shell Script" --infobox "¡La fecha no puede ser anterior a la fecha actual!" 0 0
+sleep 2
+exit
+fi
 
 dialog --backtitle "Proyecto Shell Script" --title "Programar un escaneo" --timebox "Determine la hora:" 0 0 2>temp
 Cancelado=$?
@@ -31,9 +36,9 @@ if [ $Cancelado -eq 0 ]
 fi
 hora=$Eleccion
 
-if [[ $fecha < $(date +"%d/%m/%Y") ]] || [[ $hora < $(date +"%T") ]]
+if [[ $hora < $(date +"%T") ]]
 then
-dialog --backtitle "Proyecto Shell Script" --infobox "¡No puedes elegir una fecha anterior a la actual!" 0 0
+dialog --backtitle "Proyecto Shell Script" --infobox "¡La hora no puede ser anterior a la hora actual!" 0 0
 sleep 2
 exit
 fi
