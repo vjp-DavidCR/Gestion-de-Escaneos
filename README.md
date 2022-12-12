@@ -8,7 +8,7 @@ Proyecto de Shell Script, Dialog, Nmap e Iptables
 # Distribución
 
 Esta es una representación generalizada de las partes que les toca a cada uno.
-En realidad no nos limitamos a lo que pone en la tabla, es una orientación.
+En realidad no nos limitamos a lo que pone en la tabla. Esto es sólo una orientación.
 
 | Mario | Jaime | Ismael | David |
 | :---   | :--- | :--- | :--- |
