@@ -26,23 +26,23 @@ if [ $Cancelado -eq 0 ]
 #echo "Has elegido: $Eleccion"
     if [ $Eleccion == 1 ]
     then
-      echo "Escaneo de dispositivos."
+#      echo "Escaneo de dispositivos."
       ./.red.sh
     elif [ $Eleccion == 2 ]
     then
-      echo "Programación de escaneos."
+#      echo "Programación de escaneos."
       ./.pro.sh
     elif [ $Eleccion == 3 ]
     then
-      echo "Consultar escaneos de red."
+#      echo "Consultar escaneos de red."
       ./.cred.sh
     elif [ $Eleccion == 4 ]
     then
-      echo "Consultar escaneos de servicios."
+#      echo "Consultar escaneos de servicios."
       ./.cser.sh
     elif [ $Eleccion == 5 ]
     then
-      echo "Consultar escaneos de vulnerabilidades."
+#      echo "Consultar escaneos de vulnerabilidades."
       ./.cvul.sh
     elif [ $Eleccion == 9 ]
     then
