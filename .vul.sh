@@ -7,5 +7,8 @@ clear
 dialog --backtitle "Proyecto Shell Script" --infobox "Realizando escaneo de Vulnerabilidades. Esta operación puede tardar un poco..." 0 0
 nmap -sV --script=vulscan/vulscan.nse $1 > temp11
 cat temp11 > $(echo 'VUL/VUL-'$(date '+%d-%m-%Y-%T'))
-dialog --backtitle "Proyecto Shell Script" --title "Listar Escaneos de Vulnerabilidades" --textbox temp11 0 0
+if [[ $2 -ne 1 ]]
+then
+dialog --backtitle "Proyecto Shell Script" --title "Escaneo de VULNERABILIDADES → $1" --textbox temp11 0 0
+fi
 rm temp11

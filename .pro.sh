@@ -16,22 +16,22 @@ if [ $Cancelado -eq 0 ]
 #echo "Has elegido: $Eleccion"
     if [ $Eleccion == 1 ]
     then
-      echo "Programar nuevo escaneo."
+#      echo "Programar nuevo escaneo."
       ./.pro1.sh
       ./.cron.sh
     elif [ $Eleccion == 2 ]
     then
-      echo "Listar escaneos programados."
+#      echo "Listar escaneos programados."
       ./.pro2.sh
       ./.cron.sh
     elif [ $Eleccion == 3 ]
     then
-      echo "Borrar escaneos programados."
+#      echo "Borrar escaneos programados."
       ./.pro3.sh
       ./.cron.sh
     elif [ $Eleccion == 9 ]
     then
-      echo "Salir"
+#      echo "Salir"
       break=1
     else
       echo "Si ves esto es que algo ha salido mal."

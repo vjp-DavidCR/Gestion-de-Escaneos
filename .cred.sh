@@ -12,12 +12,12 @@ done
 
 break=0
 while (( break == 0 )); do
-dialog --backtitle "Proyecto Shell Script" --title "Listar Escaneos de Red" --menu "Elige un registro" 0 0 0 $lista 2>temp
+dialog --backtitle "Proyecto Shell Script" --title "Seleccionar Informe" --menu "Informes de Escaneo de RED" 0 0 0 $lista 2>temp
 Cancelado=$?
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
   then
-    dialog --backtitle "Proyecto Shell Script" --title "Listar Escaneos de Red" --textbox "RED/$Eleccion" 0 0
+    dialog --backtitle "Proyecto Shell Script" --title "Informe de Red" --textbox "RED/$Eleccion" 0 0
   else
     dialog --backtitle "Proyecto Shell Script" --infobox "¡Has cancelado!" 4 24
     break=1

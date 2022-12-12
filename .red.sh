@@ -64,7 +64,7 @@ respuesta=$(dialog --stdout --title "Seleccionar Escaneo" --menu "Tipos de escan
 		exit;
 	else
 		clear
-		echo "Has cancelado el script de gestión de usuarios"
+		#echo "Has cancelado el script de gestión de usuarios"
 		sleep 2
 		clear
 		shell 2>/dev/null
