@@ -60,6 +60,7 @@ if [ $Cancelado -eq 0 ]
           crontab -l | cat > temporal
           echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * cd $ruta && sh .red.sh $Eleccion 1" >> temporal
           cat temporal | crontab -
+          rm temporal
 #          ./.red.sh $Eleccion
         else
           dialog --infobox "¡Has cancelado!" 4 24
@@ -75,6 +76,7 @@ if [ $Cancelado -eq 0 ]
           crontab -l | cat > temporal
           echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * cd $ruta && sh .ser.sh $Eleccion 1" >> temporal
           cat temporal | crontab -
+          rm temporal
 #          ./.ser.sh $Eleccion
         else
           dialog --infobox "¡Has cancelado!" 4 24
@@ -90,6 +92,7 @@ if [ $Cancelado -eq 0 ]
           crontab -l | cat > temporal
           echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * cd $ruta && sh .vul.sh $Eleccion 1" >> temporal
           cat temporal | crontab -
+          rm temporal
 #          ./.vul.sh $Eleccion
         else
           dialog --infobox "¡Has cancelado!" 4 24
