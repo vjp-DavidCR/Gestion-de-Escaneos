@@ -17,7 +17,7 @@ done
 
 if [ $# -eq 0 ]
 then
-subred=$(dialog --stdout --backtitle "Proyecto Shell Script - - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --title "Selecconar Subred" --menu "Subredes" 0 0 0 $redes)
+subred=$(dialog --stdout --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --title "Selecconar Subred" --menu "Subredes" 0 0 0 $redes)
 Cancelado=$?
 if [ $Cancelado -ne 0 ]
   then
@@ -27,7 +27,7 @@ else
 subred=$1
 fi
 
-dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez"--infobox "Escaneando redes..." 0 0
+dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --infobox "Escaneando redes..." 0 0
 nmap "$subred" | grep "scan report" | grep "(" | cut -f 2 -d "(" | cut -f 1 -d ")" > ip.txt
 
 cat ip.txt > $(echo 'RED/RED-'$(date '+%d-%m-%Y-%T'));
