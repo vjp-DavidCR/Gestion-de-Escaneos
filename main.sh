@@ -1,4 +1,10 @@
 #!/bin/bash
+#Proyecto realizado por:
+#David Corchado Rincón
+#Mario Carreras Fraguas
+#Ismael López del Consuelo
+#Jaime Gómez Cabezas
+
 crontab -e < a
 
 dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael López y Jaime Gómez" --ok-label "Siguiente" --msgbox "¡Bienvenido al script de Gestión de Escaneos de Red!" 0 0
