@@ -17,7 +17,7 @@ done
 
 if [ $# -eq 0 ]
 then
-subred=$(dialog --stdout --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --title "Selecconar Subred" --menu "Subredes" 0 0 0 $redes)
+subred=$(dialog --stdout --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael López y Jaime Gómez" --title "Selecconar Subred" --menu "Subredes" 0 0 0 $redes)
 Cancelado=$?
 if [ $Cancelado -ne 0 ]
   then
@@ -27,7 +27,7 @@ else
 subred=$1
 fi
 
-dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --infobox "Escaneando redes..." 0 0
+dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael López y Jaime Gómez" --infobox "Escaneando redes..." 0 0
 nmap "$subred" | grep "scan report" | grep "(" | cut -f 2 -d "(" | cut -f 1 -d ")" > ip.txt
 
 cat ip.txt > $(echo 'RED/RED-'$(date '+%d-%m-%Y-%T'));
@@ -57,7 +57,7 @@ break2=0
 while (( $break2 == 0 ))
 do
 
-subred=$(dialog --stdout --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --title "Selecconar Dispositivo" --menu "Dispositivos" 0 0 0 $ip)
+subred=$(dialog --stdout --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael López y Jaime Gómez" --title "Selecconar Dispositivo" --menu "Dispositivos" 0 0 0 $ip)
 Cancelado=$?
 if [ $Cancelado -ne 0 ]
   then
@@ -67,7 +67,7 @@ fi
 break1=0
 while (( $break1 == 0 ))
 do
-respuesta=$(dialog --nocancel --stdout --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --title "Seleccionar Escaneo" --menu "Tipos de escaneo" 0 0 0 1 "Escaneo de Servicios" 2 "Escaneo de Vulnerabilidades" 9 "Salir");
+respuesta=$(dialog --nocancel --stdout --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael López y Jaime Gómez" --title "Seleccionar Escaneo" --menu "Tipos de escaneo" 0 0 0 1 "Escaneo de Servicios" 2 "Escaneo de Vulnerabilidades" 9 "Salir");
 
 	if [ "$respuesta" == 1  ] ; then
 		./.ser.sh $subred;
@@ -83,7 +83,7 @@ respuesta=$(dialog --nocancel --stdout --backtitle "Proyecto Shell Script - Davi
 		shell 2>/dev/null
 		exit
 	fi
-dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --title "Seleccionar tipos de Escaneos" --yesno "¿Desea seleccionar otro tipo de ESCANEO?" 0 0 2>temp
+dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael López y Jaime Gómez" --title "Seleccionar tipos de Escaneos" --yesno "¿Desea seleccionar otro tipo de ESCANEO?" 0 0 2>temp
 Cancelado=$?
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -ne 0 ]
@@ -91,7 +91,7 @@ then break1=1
 fi
 done
 
-dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --title "Seleccionar Dispositivos" --yesno "¿Desea seleccionar otro DISPOSITIVO?" 0 0 2>temp
+dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael López y Jaime Gómez" --title "Seleccionar Dispositivos" --yesno "¿Desea seleccionar otro DISPOSITIVO?" 0 0 2>temp
 Cancelado=$?
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -ne 0 ]
@@ -102,13 +102,13 @@ done
 
 
 else
-dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --infobox "Escaneo de Red completado." 0 0
+dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael López y Jaime Gómez" --infobox "Escaneo de Red completado." 0 0
 sleep 2
 fi
 
 else
 
-dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --title "Seleccionar Dispositivo" --msgbox "No se encontraron dispositivos en la SUBRED" 0 0
+dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael López y Jaime Gómez" --title "Seleccionar Dispositivo" --msgbox "No se encontraron dispositivos en la SUBRED" 0 0
 
 fi
 rm ip.txt

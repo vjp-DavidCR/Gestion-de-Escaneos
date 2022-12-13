@@ -22,7 +22,7 @@ done
 
 #counter=$(( $(crontab -l | cat | tr " " "-" | wc -l) + 6 ))
 
-dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --title "Listar escaneos programados" --msgbox "Lista de escaneos: \n\n$lista" 0 0
+dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael López y Jaime Gómez" --title "Listar escaneos programados" --msgbox "Lista de escaneos: \n\n$lista" 0 0
 # $counter 60
 
 #sleep 1
