@@ -24,7 +24,7 @@ done
 )
 #echo $options; sleep 2
 
-dialog --backtitle "Proyecto Shell Script" --title "Borrar escaneos programados" --buildlist "Lista de escaneos:" 0 0 0$options 2>temp
+dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --title "Borrar escaneos programados" --buildlist "Lista de escaneos:" 0 0 0$options 2>temp
 Cancelado=$?
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
@@ -43,18 +43,18 @@ if [ $Cancelado -eq 0 ]
     rm temp1
     rm temp2
 
-    dialog --title "Confirmar borrado" --backtitle "Proyecto Shell Script" --yesno "Confirmar borrado de registros." 0 0 2>temp
+    dialog --title "Confirmar borrado" --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --yesno "Confirmar borrado de registros." 0 0 2>temp
     Cancelado=$?
     Eleccion=`cat temp` ; rm temp
     if [ $Cancelado -eq 0 ]
       then
         cat temp3 | crontab -
       else
-        dialog --infobox "Borrado cancelado" 0 0
+        dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --infobox "Borrado cancelado" 0 0
         sleep 1
     fi
     rm temp3
-  else dialog --infobox "¡Has cancelado!" 4 24
+  else dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --infobox "¡Has cancelado!" 4 24
 fi
 
 #sleep 1
