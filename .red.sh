@@ -67,7 +67,7 @@ fi
 break1=0
 while (( $break1 == 0 ))
 do
-respuesta=$(dialog --stdout --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --title "Seleccionar Escaneo" --menu "Tipos de escaneo" 0 0 0 1 "Escaneo de Servicios" 2 "Escaneo de Vulnerabilidades" 9 "Salir");
+respuesta=$(dialog --nocancel --stdout --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --title "Seleccionar Escaneo" --menu "Tipos de escaneo" 0 0 0 1 "Escaneo de Servicios" 2 "Escaneo de Vulnerabilidades" 9 "Salir");
 
 	if [ "$respuesta" == 1  ] ; then
 		./.ser.sh $subred;
