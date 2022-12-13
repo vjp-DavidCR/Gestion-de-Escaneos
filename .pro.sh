@@ -8,36 +8,42 @@ break=0
 while [ $break == 0 ]
 do
 
-dialog --backtitle "Proyecto Shell Script" --menu "Opciones:" 0 0 0 1 "Programar nuevo escaneo" 2 "Listar escaneos programados" 3 "Borrar escaneos programados" 9 "Salir" 2>temp
+dialog --nocancel --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael López y Jaime Gómez" --menu "Opciones:" 0 0 0 1 "Programar nuevo escaneo" 2 "Listar escaneos programados" 3 "Borrar escaneos programados" 9 "Salir" 2>temp
 Cancelado=$?
+if [ $Cancelado -ne 0 ]
+  then
+        exit
+fi
+
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
   then
 #echo "Has elegido: $Eleccion"
     if [ $Eleccion == 1 ]
     then
-      echo "Programar nuevo escaneo."
+#      echo "Programar nuevo escaneo."
       ./.pro1.sh
       ./.cron.sh
     elif [ $Eleccion == 2 ]
     then
-      echo "Listar escaneos programados."
+#      echo "Listar escaneos programados."
       ./.pro2.sh
       ./.cron.sh
     elif [ $Eleccion == 3 ]
     then
-      echo "Borrar escaneos programados."
+#      echo "Borrar escaneos programados."
       ./.pro3.sh
       ./.cron.sh
     elif [ $Eleccion == 9 ]
     then
-      echo "Salir"
+#      echo "Salir"
       break=1
     else
       echo "Si ves esto es que algo ha salido mal."
       sleep 1
     fi
-  else dialog --infobox "¡Has cancelado!" 4 24
+  else dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael López y Jaime Gómez" --infobox "¡Has cancelado!" 4 24
+  sleep 1
 fi
 
 
