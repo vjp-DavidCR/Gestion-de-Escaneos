@@ -17,6 +17,7 @@ if [ $Cancelado -eq 0 ]
   exit
 fi
 fecha=$(echo $(echo -n $Eleccion | cut -d "/" -f 3; echo -n $Eleccion | cut -d "/" -f 2; echo -n $Eleccion | cut -d "/" -f 1) | tr " " "-")
+fechareal=$Eleccion
 
 if [[ $(date -d $fecha +%s) < $(date -d $(date +"%Y-%m-%d") +%s) ]]
 then
@@ -35,6 +36,7 @@ if [ $Cancelado -eq 0 ]
   exit
 fi
 hora=$(echo $Eleccion | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }')
+horareal=$Eleccion
 
 if [[ $(date -d $fecha +%s) == $(date -d $(date +"%Y-%m-%d") +%s) ]] && [[ $hora < $(date +"%T" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }') ]]
 then
@@ -58,7 +60,7 @@ if [ $Cancelado -eq 0 ]
       if [ $Cancelado -eq 0 ]
         then
           crontab -l | cat > temporal
-          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * cd $ruta && sh .red.sh $Eleccion 1" >> temporal
+          echo $(echo $horareal | cut -d ":" -f 2) $(echo $horareal | cut -d ":" -f 1) $(echo $fechareal | cut -d "/" -f 1) $(echo $fechareal | cut -d "/" -f 2)" * cd $ruta && sh .red.sh $Eleccion 1" >> temporal
           cat temporal | crontab -
           rm temporal
 #          ./.red.sh $Eleccion
@@ -74,7 +76,7 @@ if [ $Cancelado -eq 0 ]
       if [ $Cancelado -eq 0 ]
         then
           crontab -l | cat > temporal
-          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * cd $ruta && sh .ser.sh $Eleccion 1" >> temporal
+          echo $(echo $horareal | cut -d ":" -f 2) $(echo $horareal | cut -d ":" -f 1) $(echo $fechareal | cut -d "/" -f 1) $(echo $fechareal | cut -d "/" -f 2)" * cd $ruta && sh .ser.sh $Eleccion 1" >> temporal
           cat temporal | crontab -
           rm temporal
 #          ./.ser.sh $Eleccion
@@ -90,7 +92,7 @@ if [ $Cancelado -eq 0 ]
       if [ $Cancelado -eq 0 ]
         then
           crontab -l | cat > temporal
-          echo $(echo $hora | cut -d ":" -f 2) $(echo $hora | cut -d ":" -f 1) $(echo $fecha | cut -d "/" -f 1) $(echo $fecha | cut -d "/" -f 2)" * cd $ruta && sh .vul.sh $Eleccion 1" >> temporal
+          echo $(echo $horareal | cut -d ":" -f 2) $(echo $horareal | cut -d ":" -f 1) $(echo $fechareal | cut -d "/" -f 1) $(echo $fechareal | cut -d "/" -f 2)" * cd $ruta && sh .vul.sh $Eleccion 1" >> temporal
           cat temporal | crontab -
           rm temporal
 #          ./.vul.sh $Eleccion
