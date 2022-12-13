@@ -8,7 +8,7 @@ break=0
 while [ $break == 0 ]
 do
 
-dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --menu "Opciones:" 0 0 0 1 "Programar nuevo escaneo" 2 "Listar escaneos programados" 3 "Borrar escaneos programados" 9 "Salir" 2>temp
+dialog --nocancel --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --menu "Opciones:" 0 0 0 1 "Programar nuevo escaneo" 2 "Listar escaneos programados" 3 "Borrar escaneos programados" 9 "Salir" 2>temp
 Cancelado=$?
 if [ $Cancelado -ne 0 ]
   then
