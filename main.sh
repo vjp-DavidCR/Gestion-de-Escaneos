@@ -18,7 +18,7 @@ break=0
 while [ $break == 0 ]
 do
 
-dialog --nocancel --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --menu "Menú Principal" 0 0 0 1 "Escaneo de dispositivos" 2 "Programación de escaneos" 3 "Consultar escaneos de red" 4 "Consultar escaneos de servicios" 5 "Consultar escaneos de vulnerabilidades" 9 "Salir" 2>temp
+dialog --nocancel --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --title "Menú Principal" --menu "Opciones" 0 0 0 1 "Escaneo de dispositivos" 2 "Programación de escaneos" 3 "Consultar escaneos de red" 4 "Consultar escaneos de servicios" 5 "Consultar escaneos de vulnerabilidades" 9 "Salir" 2>temp
 Cancelado=$?
 Eleccion=`cat temp` ; rm temp
 if [ $Cancelado -eq 0 ]
@@ -55,6 +55,6 @@ if [ $Cancelado -eq 0 ]
   else
   dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --infobox "¡Has cancelado!" 4 24
 fi
-sleep 1
+#sleep 1
 done
 clear
