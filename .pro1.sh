@@ -16,9 +16,9 @@ if [ $Cancelado -eq 0 ]
   sleep 1
   exit
 fi
-fecha=$Eleccion
+fecha=$(echo $(echo -n $Eleccion | cut -d "/" -f 3; echo -n $Eleccion | cut -d "/" -f 2; echo -n $Eleccion | cut -d "/" -f 1) | tr " " "-")
 
-if [[ $fecha < $(date +"%d/%m/%Y") ]]
+if [[ $(date -d $fecha +%s) < $(date -d $(date +"%Y-%m-%d") +%s) ]]
 then
 dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --infobox "¡La fecha no puede ser anterior a la fecha actual!" 0 0
 sleep 2
@@ -34,9 +34,9 @@ if [ $Cancelado -eq 0 ]
   sleep 1
   exit
 fi
-hora=$Eleccion
+hora=$(echo $Eleccion | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }')
 
-if [[ $hora < $(date +"%T") ]]
+if [[ $(date -d $fecha +%s) == $(date -d $(date +"%Y-%m-%d") +%s) ]] && [[ $hora < $(date +"%T" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }') ]]
 then
 dialog --backtitle "Proyecto Shell Script - David Corchado, Mario Carreras, Ismael Lopez y Jaime Gómez" --infobox "¡La hora no puede ser anterior a la hora actual!" 0 0
 sleep 2
